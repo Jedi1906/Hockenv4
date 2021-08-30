@@ -1,43 +1,17 @@
-package com.hocken.Hockenv4.model;
+package com.hocken.Hockenv4.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
-
-@Entity
-@Table(name = "candidato")
-public class Candidato {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class CandidatoDTO {
     private String nombre;
     private String apellido;
     private String correo;
     private String telefono;
     private String fecha_nac;
-    private String contrasena;
-
-    /*Datos detalle usuario*/
     private String ciudad_residencia;
     private String puesto_anterior;
+    private String contrasena;
     private String area_funcional;
     private String cv;
     private String estado;
-
-
-    @OneToMany(mappedBy = "candidato",fetch = FetchType.EAGER)
-    private Set<VacantePostulada> postuladas = new HashSet<>();
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;
@@ -125,13 +99,5 @@ public class Candidato {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public Set<VacantePostulada> getPostuladas() {
-        return postuladas;
-    }
-
-    public void setPostuladas(Set<VacantePostulada> postuladas) {
-        this.postuladas = postuladas;
     }
 }
