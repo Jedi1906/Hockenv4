@@ -1,6 +1,8 @@
 package com.hocken.Hockenv4.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.hocken.Hockenv4.security.entity.Usuario;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,16 +18,50 @@ public class Empresa {
     private String telefono;
     private String posicion_reclutar;
     private String rengo_sueldo;
+
     /**Relación de tabla 1-M modificar fetch si se necesita es para filtrar por id las vacantes*/
 
-   @OneToMany(mappedBy = "empresa")
+   @OneToMany(mappedBy = "empresa",cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Vacante> vacantes = new HashSet<>();
 
     /**Relación de tabla M-1*/
-    @ManyToOne(optional = false)
+    @ManyToOne( cascade = CascadeType.ALL, optional = true)
     @JsonIgnoreProperties(value = "empresas")
     @JsonIgnore
-    private Admin admin;
+    private Usuario usuario;
+    public Empresa(String nombre_empresa, String titular, String email, String telefono, String posicion_reclutar, String rengo_sueldo)
+    {this.nombre_empresa = nombre_empresa;
+        this.titular = titular;
+        this.email = email;
+        this.telefono = telefono;
+        this.posicion_reclutar = posicion_reclutar;
+        this.rengo_sueldo = rengo_sueldo;
+
+    }
+    public Empresa(){
+
+    }
+
+    public Empresa(String nombre_empresa, String titular, String email, String telefono, String posicion_reclutar, String rengo_sueldo, Set<Vacante> vacantes, Usuario usuario) {
+        this.nombre_empresa = nombre_empresa;
+        this.titular = titular;
+        this.email = email;
+        this.telefono = telefono;
+        this.posicion_reclutar = posicion_reclutar;
+        this.rengo_sueldo = rengo_sueldo;
+        this.vacantes = vacantes;
+        this.usuario = usuario;
+    }
+
+    public Empresa(String nombre_empresa, String titular, String email, String telefono, String posicion_reclutar, String rengo_sueldo, Usuario usuario) {
+        this.nombre_empresa = nombre_empresa;
+        this.titular = titular;
+        this.email = email;
+        this.telefono = telefono;
+        this.posicion_reclutar = posicion_reclutar;
+        this.rengo_sueldo = rengo_sueldo;
+        this.usuario = usuario;
+    }
 
     public int getId() {
         return id;
@@ -91,11 +127,11 @@ public class Empresa {
         this.vacantes = vacantes;
     }
 
-    public Admin getAdmin() {
-        return admin;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

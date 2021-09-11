@@ -34,8 +34,6 @@ public class VacanteService extends QueryService<Vacante> {
     public void delete(int id){
         vacanteDAO.deleteById(id);
     }
-
-
     public List<Vacante>findByFiltro(FiltroVacante filtroVacante){
         final Specification<Vacante> specification = createSpecification(filtroVacante);
         List<Vacante> vacantes = vacanteDAO.findAll(specification);

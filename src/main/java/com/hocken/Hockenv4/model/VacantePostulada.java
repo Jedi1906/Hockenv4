@@ -1,8 +1,6 @@
 package com.hocken.Hockenv4.model;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Getter;
-import lombok.Setter;
+import com.hocken.Hockenv4.security.entity.Usuario;
 
 import javax.persistence.*;
 
@@ -11,12 +9,20 @@ public class VacantePostulada {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String fecha;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JsonIgnoreProperties(value = "postuladas")
-    private Candidato candidato;
-   @ManyToOne(optional = false)
+    private Usuario usuario;
+   @ManyToOne(optional = false, cascade = CascadeType.ALL)
    @JsonIgnoreProperties(value = "postuladas")
     private Vacante vacante;
+
+    public VacantePostulada() {
+    }
+    public VacantePostulada(String fecha, Usuario usuario, Vacante vacante) {
+        this.fecha = fecha;
+        this.usuario = usuario;
+        this.vacante = vacante;
+    }
 
     public int getId() {
         return id;
@@ -34,12 +40,12 @@ public class VacantePostulada {
         this.fecha = fecha;
     }
 
-    public Candidato getCandidato() {
-        return candidato;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setCandidato(Candidato candidato) {
-        this.candidato =candidato;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Vacante getVacante() {
@@ -47,6 +53,6 @@ public class VacantePostulada {
     }
 
     public void setVacante(Vacante vacante) {
-        this.vacante =vacante;
+        this.vacante = vacante;
     }
 }

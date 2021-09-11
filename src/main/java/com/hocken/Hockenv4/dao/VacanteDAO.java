@@ -10,5 +10,4 @@ import java.util.Optional;
 
 @Repository
 public interface VacanteDAO extends JpaRepository<Vacante,Integer>, JpaSpecificationExecutor<Vacante> {
-
 }

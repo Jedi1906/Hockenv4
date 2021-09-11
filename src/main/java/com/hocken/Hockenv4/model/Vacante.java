@@ -25,11 +25,45 @@ public class Vacante {
     private String ofrecemos;
     private String estado;
     /**Relación de tabla M-1*/
-   @ManyToOne(optional = false)
+   @ManyToOne(optional = false,cascade = CascadeType.ALL)
    @JsonIgnoreProperties(value = "vacantes")
     private Empresa empresa;
- @OneToMany(mappedBy = "vacante")
+    @OneToMany(mappedBy = "vacante", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<VacantePostulada> postuladas = new HashSet<>();
+
+    public Vacante() {
+    }
+
+    public Vacante(String nombre_vac, String ubicacion, String modalidad, String rango_sul, String area, String descripcion, String fecha_publ, String tipo_contrato, String perfil_ideal, String ofrecemos, String estado, Empresa empresa, Set<VacantePostulada> postuladas) {
+        this.nombre_vac = nombre_vac;
+        this.ubicacion = ubicacion;
+        this.modalidad = modalidad;
+        this.rango_sul = rango_sul;
+        this.area = area;
+        this.descripcion = descripcion;
+        this.fecha_publ = fecha_publ;
+        this.tipo_contrato = tipo_contrato;
+        this.perfil_ideal = perfil_ideal;
+        this.ofrecemos = ofrecemos;
+        this.estado = estado;
+        this.empresa = empresa;
+        this.postuladas = postuladas;
+    }
+
+    public Vacante(String nombre_vac, String ubicacion, String modalidad, String rango_sul, String area, String descripcion, String fecha_publ, String tipo_contrato, String perfil_ideal, String ofrecemos, String estado, Empresa empresa) {
+        this.nombre_vac = nombre_vac;
+        this.ubicacion = ubicacion;
+        this.modalidad = modalidad;
+        this.rango_sul = rango_sul;
+        this.area = area;
+        this.descripcion = descripcion;
+        this.fecha_publ = fecha_publ;
+        this.tipo_contrato = tipo_contrato;
+        this.perfil_ideal = perfil_ideal;
+        this.ofrecemos = ofrecemos;
+        this.estado = estado;
+        this.empresa = empresa;
+    }
 
     public int getId() {
         return id;
