@@ -9,4 +9,6 @@ import java.util.List;
 public interface IVacante extends CrudRepository<Vacante,Integer> {
     @Query("select v from Vacante v where v.nombre_vac= ?1")
     List<Vacante> getVacanteByNombre_vac(String nombre_vac);
+    @Query("select v from Vacante v where v.area = ?1")
+    List<Vacante> getVacanteByArea(String area);
 }

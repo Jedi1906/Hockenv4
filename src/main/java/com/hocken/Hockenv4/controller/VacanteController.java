@@ -24,7 +24,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping( value = "/api")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class VacanteController {
         @Autowired
         VacanteI vacanteI;
@@ -72,6 +72,10 @@ public class VacanteController {
         public ResponseEntity<List<Vacante>> list(){
             List<Vacante> list = vacanteService.getall();
             return new ResponseEntity(list, HttpStatus.OK);
+        }
+        @GetMapping("/vacanteA/{area}")
+        public List<Vacante> getVacanteByArea(@PathVariable String area){
+            return vacanteI.getVacanteByArea(area);
         }
         @PostMapping(value = "/vacantes")
         public ResponseEntity<List<Vacante>> filtros(@RequestBody VacanteDTO vacanteDTO){

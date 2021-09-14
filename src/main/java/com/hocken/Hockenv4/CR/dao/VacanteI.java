@@ -14,4 +14,9 @@ public class VacanteI implements IVacanteService {
     public List<Vacante> getVacanteByNombre_vac(String nombre_vac) {
         return iVacante.getVacanteByNombre_vac(nombre_vac);
     }
+
+    @Override
+    public List<Vacante> getVacanteByArea(String area) {
+        return iVacante.getVacanteByArea(area);
+    }
 }

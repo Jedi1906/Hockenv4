@@ -82,8 +82,7 @@ public class AuthController {
         Authentication authentication = manager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getCorreo(),loginUsuario.getContrasena()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtProvider.generateToken(authentication);
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        JwtDTO jwtDTO = new JwtDTO(jwt, userDetails.getUsername(),userDetails.getAuthorities());
+        JwtDTO jwtDTO = new JwtDTO(jwt);
         return new ResponseEntity(jwtDTO, HttpStatus.OK);
     }
 

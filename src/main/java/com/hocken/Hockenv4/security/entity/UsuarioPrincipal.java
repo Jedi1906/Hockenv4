@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class UsuarioPrincipal implements UserDetails {
     /*admin*/
+    private int id;
     private String nombre;
     private String apellido;
     private String correo;
@@ -32,10 +33,11 @@ public class UsuarioPrincipal implements UserDetails {
                 map(rol -> new SimpleGrantedAuthority(rol.getRolnombre().name()))
                 .collect(Collectors.toList());
                  return new UsuarioPrincipal
-                (usuario.getNombre(),usuario.getApellido(),usuario.getContrasena(),usuario.getCorreo(),
+                (usuario.getId(),usuario.getNombre(),usuario.getApellido(),usuario.getContrasena(),usuario.getCorreo(),
                         usuario.getTelefono(),usuario.getFecha_nac(),authorities);
     }
-    public UsuarioPrincipal(String nombre, String apellido, String contrasena, String correo, String telefono, String fecha_nac , Collection<? extends GrantedAuthority> authorities) {
+    public UsuarioPrincipal(int id,String nombre, String apellido, String contrasena, String correo, String telefono, String fecha_nac , Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.contrasena = contrasena;
@@ -68,6 +70,8 @@ public class UsuarioPrincipal implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+    public int getId() {return id;}
+    public void setId(int id) {this.id = id;}
     public String getNombre() {
         return nombre;
     }
