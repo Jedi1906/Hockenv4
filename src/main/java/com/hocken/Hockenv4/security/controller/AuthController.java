@@ -19,12 +19,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -84,6 +84,12 @@ public class AuthController {
         String jwt = jwtProvider.generateToken(authentication);
         JwtDTO jwtDTO = new JwtDTO(jwt);
         return new ResponseEntity(jwtDTO, HttpStatus.OK);
+    }
+    @PostMapping("/refresh")
+    public ResponseEntity<JwtDTO> refresh(@RequestBody JwtDTO dto) throws ParseException {
+        String token = jwtProvider.refreshToken(dto);
+        JwtDTO jwt = new JwtDTO(token);
+        return new ResponseEntity<>(jwt,HttpStatus.OK);
     }
 
 }
