@@ -28,4 +28,14 @@ public class UsuarioService{
     public void save(Usuario usuario) {
          usuarioDAO.save(usuario);
     }
+    //Sentencia OR
+    public Optional<Usuario> findByNombreOrCorreo(String nombreOrcorreo){
+        return usuarioDAO.findByNombreOrCorreo(nombreOrcorreo,nombreOrcorreo);
+    }
+    public Optional<Usuario> findByTokencontrasena(String token){
+        return usuarioDAO.findByTokencontrasena(token);
+    }
+    public List<Usuario> findbyId(int id){
+        return usuarioDAO.findById(id);
+    }
 }

@@ -39,6 +39,7 @@ public class VacanteService extends QueryService<Vacante> {
         List<Vacante> vacantes = vacanteDAO.findAll(specification);
         return vacantes;
     }
+
     /*Retorna todas las vacantes*/
     private Specification<Vacante> createSpecification(FiltroVacante filtroVacante){
         Specification<Vacante>  specification = Specification.where(null);

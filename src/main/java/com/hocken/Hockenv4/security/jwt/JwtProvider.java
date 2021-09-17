@@ -38,7 +38,7 @@ public class JwtProvider {
             .claim("id",id)
             .setIssuedAt(new Date())
             .setExpiration
-            (new Date(new Date().getTime() + expiration)).signWith(SignatureAlgorithm.HS512,secret.getBytes()).compact();
+            (new Date(new Date().getTime() + expiration * 180)).signWith(SignatureAlgorithm.HS512,secret.getBytes()).compact();
     }
     public String getusuarioFromToken(String token){
         return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody().getSubject();

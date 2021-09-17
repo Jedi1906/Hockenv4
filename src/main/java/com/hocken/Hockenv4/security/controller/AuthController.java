@@ -50,6 +50,9 @@ public class AuthController {
     public List<Usuario> findAll(){
         return usuarioService.findAll();
     }
+    @GetMapping("/usuario/{id}")
+    public List<Usuario> findbyId(@PathVariable int id){return usuarioService.findbyId(id);}
+
 
 
     @PostMapping("/nuevo")

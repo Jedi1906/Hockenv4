@@ -11,7 +11,13 @@ import java.util.Optional;
 @Repository
 public interface UsuarioDAO extends JpaRepository<Usuario, Integer> {
     Optional<Usuario> findByCorreo(String correo);
+    Optional<Usuario> findByTokencontrasena(String token);
     boolean existsByCorreo(String correo);
+    /*Estructura OR*/
+    Optional<Usuario> findByNombreOrCorreo(String nombre , String correo);
     @Override
     List<Usuario> findAll();
+
+   List<Usuario> findById(int id);
+
 }

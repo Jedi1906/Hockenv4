@@ -20,6 +20,7 @@ public class Usuario {
     private String telefono;
     private String fecha_nac;
     private String contrasena;
+    private String tokencontrasena;
 
     @OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Empresa> empresas = new HashSet<>();
@@ -106,6 +107,15 @@ public class Usuario {
     public void setFecha_nac(String fecha_nac) {
         this.fecha_nac = fecha_nac;
     }
+    public String getTokencontrasena() {
+        return tokencontrasena;
+    }
+
+    public void setTokencontrasena(String tokencontrasena) {
+        this.tokencontrasena = tokencontrasena;
+    }
+
+
 
     public String getContrasena() {
         return contrasena;

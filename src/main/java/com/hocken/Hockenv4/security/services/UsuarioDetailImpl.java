@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 public class UsuarioDetailImpl implements UserDetailsService {
     @Autowired
     UsuarioService usuarioService;
-    /*Modificar de ser requirido por usuario*/
+    /*Inicio de sesión por nombre o correo*/
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Usuario usuario = usuarioService.getByNombre(s).get();
+        Usuario usuario = usuarioService.findByNombreOrCorreo(s).get();
         return UsuarioPrincipal.build(usuario);
     }
 

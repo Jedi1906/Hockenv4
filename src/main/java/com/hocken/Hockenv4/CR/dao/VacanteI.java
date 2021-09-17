@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class VacanteI implements IVacanteService {
@@ -19,4 +20,5 @@ public class VacanteI implements IVacanteService {
     public List<Vacante> getVacanteByArea(String area) {
         return iVacante.getVacanteByArea(area);
     }
+
 }
